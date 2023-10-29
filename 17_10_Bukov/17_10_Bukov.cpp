@@ -19,8 +19,9 @@ void MinMax(T array[], size_t size, T& min, T& max)
             max = array[i];
     }
 }
+
+
 template <typename T>
-/* func for sort array. buble*/
 void Sort(T array[], size_t size)
 {
     for(size_t i = 0; i < size - 1; i++)
@@ -54,4 +55,32 @@ int main()
     MinMax(arraydouble, sizeof(arraydouble) / sizeof(arraydouble[0]), mindouble, maxdouble);
     std::cout << "Минимальное значение double : " << mindouble << std::endl;
     std::cout << "Максимальное значение double : " << maxdouble << std::endl;
+
+    char arraychar[]{'p', 'd', 'c', 'a', 'e', 'f', 'g', 'n', 'i'};
+    char minchar, maxchar;
+
+    MinMax(arraychar, sizeof(arraychar) / sizeof(arraychar[0]), minchar, maxchar);
+    std::cout << "Минимальное значение char : " << minchar << std::endl;
+    std::cout << "Максимальное значение char : " << maxchar << std::endl;
+
+    Sort(arrayint, sizeof(arrayint) / sizeof(arrayint[0]));
+    std::cout << "Отсортированный массив int : ";
+    for (int i = 0; i < sizeof(arrayint) / sizeof(arrayint[0]); i++)
+    {
+        std::cout << arrayint[i] << " ";
+    }
+
+    Sort(arraydouble, sizeof(arraydouble) / sizeof(arraydouble[0]));
+    std::cout << "\nОтсортированный массив double : ";
+    for (int i = 0; i < sizeof(arraydouble) / sizeof(arraydouble[0]); i++)
+    {
+        std::cout << arraydouble[i] << " ";
+    }
+
+    Sort(arraychar, sizeof(arraychar) / sizeof(arraychar[0]));
+    std::cout << "\nОтсортированный массив char : ";
+    for (int i = 0; i < sizeof(arraychar) / sizeof(arraychar[0]); i++)
+    {
+        std::cout << arraychar[i] << " ";
+    }
 }
