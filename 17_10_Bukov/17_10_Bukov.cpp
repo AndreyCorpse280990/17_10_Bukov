@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 
-
+// шаблон нахождения минимума и максимума
 template <typename T>
 void MinMax(T array[], size_t size, T& min, T& max)
 {
@@ -20,7 +20,7 @@ void MinMax(T array[], size_t size, T& min, T& max)
     }
 }
 
-
+// шаблон сортировки пузырьком
 template <typename T>
 void Sort(T array[], size_t size)
 {
@@ -38,6 +38,46 @@ void Sort(T array[], size_t size)
     }
 }
 
+// Бинарный поиск
+template <typename T>
+void BinarySearch(T array[], size_t size, T key)
+{
+    int left = 0;
+    int right = size - 1;
+    int middle;
+
+    while(left <= right)
+    {
+        middle = (left + right) / 2;
+        if(array[middle] == key)
+        {
+            std::cout << "Элемент " << key << " найден" << std::endl;
+            return;
+        }
+        else if(array[middle] < key)
+            left = middle + 1;
+        else
+            right = middle - 1;
+    }
+    std::cout << "Элемент " << key << " не найден" << std::endl;  
+}
+
+// Замена элемента
+template <typename T>
+void Replace(T array[], size_t size, T old_value, T new_value)
+{
+    for(size_t i = 0; i < size; i++)
+    {
+        if(array[i] == old_value)
+            array[i] = new_value;
+    }
+    std::cout << "Элемент " << old_value << " заменен на " << new_value << std::endl;
+    for(size_t i = 0; i < size; i++)
+    {
+        std::cout << array[i] << " ";
+    }
+    std::cout << std::endl;
+}
 
 int main()
 {
@@ -53,7 +93,7 @@ int main()
     double mindouble, maxdouble;
 
     MinMax(arraydouble, sizeof(arraydouble) / sizeof(arraydouble[0]), mindouble, maxdouble);
-    std::cout << "Минимальное значение double : " << mindouble << std::endl;
+     std::cout << "Минимальное значение double : " << mindouble << std::endl;
     std::cout << "Максимальное значение double : " << maxdouble << std::endl;
 
     char arraychar[]{'p', 'd', 'c', 'a', 'e', 'f', 'g', 'n', 'i'};
@@ -69,18 +109,28 @@ int main()
     {
         std::cout << arrayint[i] << " ";
     }
-
     Sort(arraydouble, sizeof(arraydouble) / sizeof(arraydouble[0]));
     std::cout << "\nОтсортированный массив double : ";
     for (int i = 0; i < sizeof(arraydouble) / sizeof(arraydouble[0]); i++)
     {
         std::cout << arraydouble[i] << " ";
     }
-
     Sort(arraychar, sizeof(arraychar) / sizeof(arraychar[0]));
     std::cout << "\nОтсортированный массив char : ";
     for (int i = 0; i < sizeof(arraychar) / sizeof(arraychar[0]); i++)
     {
         std::cout << arraychar[i] << " ";
     }
+
+
+    std::cout << std::endl;
+    BinarySearch(arrayint, sizeof(arrayint) / sizeof(arrayint[0]), 9); 
+    BinarySearch(arraydouble, sizeof(arraydouble) / sizeof(arraydouble[0]), 1.1); 
+    BinarySearch(arraychar, sizeof(arraychar) / sizeof(arraychar[0]), 'p');
+
+
+    Replace(arrayint, sizeof(arrayint) / sizeof(arrayint[0]), 9, 100); 
+    Replace(arraydouble, sizeof(arraydouble) / sizeof(arraydouble[0]), 1.1, 9.9);
+    Replace(arraychar, sizeof(arraychar) / sizeof(arraychar[0]), 'p', 'q');
+return 0;
 }
